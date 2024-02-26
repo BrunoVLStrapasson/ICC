@@ -89,14 +89,6 @@ int main(int argc,char* argv[])
         }
     } 
 
-    /*void*** hessiana2 = (void***)malloc(sizeof(void**) * n);
-    for (int i = 0; i < n; i++) {
-        hessiana2[i] = (void**)malloc(sizeof(void*) * n);
-        for (int j = 0; j < n; j++) {
-            hessiana2[i][j] = NULL;  // Inicializar com NULL
-        }
-    }*/
-
     // Cria o vetor X de acordo com o valor da entrada
     double* vet_x = (double*)malloc(sizeof(double) * n);
     for (int j = 0; j < n; j++)
@@ -104,12 +96,6 @@ int main(int argc,char* argv[])
         // aqui era iniciado com x
         vet_x[j] = 1;
     }
-
-   /*double* vet_x2 = (double*)malloc(sizeof(double) * n);
-    for (int j = 0; j < n; j++)
-    {
-        vet_x2[j] = x;
-    }*/
 
     // Declara o vetor X atual e o proximo
     double* x_atual = (double*)malloc(sizeof(double) * n);
@@ -119,20 +105,12 @@ int main(int argc,char* argv[])
     }
     double* x_proximo = (double*)malloc(sizeof(double) * n);
 
-    /*double* x_atual2 = (double*)malloc(sizeof(double) * n);
-    double* x_proximo2 = (double*)malloc(sizeof(double) * n);
-    */
-
     // Cálculo do valor de f(X) atual
     double f_x_atual = 0.0;
     f_x_atual = calcularValorFuncao(vet_x, n);
     double f_x_proximo = 0.0;
 
     printf(" %f valor inicial f_x_atual \n", f_x_atual);
-
-    /*double f_x_atual2 = calcularValorFuncao(vet_x, n);
-    double f_x_proximo2;
-    */
 
     // Ponteiro para guardar o vetor X inicial e os proximos vetores X    
     void** xPointers = (void**)malloc(sizeof(void*) * n);
@@ -142,14 +120,6 @@ int main(int argc,char* argv[])
         xPointers[j] = evaluator_create(variable);
     }  
 
-    /*
-    void** xPointers2 = (void**)malloc(sizeof(void*) * n);
-    for (int j = 0; j < n; j++) {
-        char variable[10];
-        snprintf(variable, sizeof(variable), "x%d", j + 1);
-        xPointers2[j] = evaluator_create(variable);
-    }*/
-
     // Vetor de nomes das variáveis
     char **Nomes = (char**)malloc(sizeof(char*) * n);
     for (int j = 0; j < n; j++) {
@@ -157,14 +127,6 @@ int main(int argc,char* argv[])
         snprintf(variable, sizeof(variable), "x%d", j + 1);
         Nomes[j] = strdup(variable); // Copia o nome da variável para o vetor names
     }
-
-    /*
-    char **Nomes2 = (char**)malloc(sizeof(char*) * n);
-    for (int j = 0; j < n; j++) {
-        char variable[10];
-        snprintf(variable, sizeof(variable), "x%d", j + 1);
-        Nomes2[j] = strdup(variable); // Copia o nome da variável para o vetor names
-    }*/
 
     // Vetor de termos independentes do sistema linear
     double* b = (double*)malloc(sizeof(double) * n);
@@ -181,18 +143,9 @@ int main(int argc,char* argv[])
             A[i][j] = 0;
     }
     
-    /*double** A2 = (double**)malloc(sizeof(double*) * n);
-    for (int i = 0; i < n; i++) {
-        A2[i] = (double*)malloc(sizeof(double) * n);
-    }*/
-
-
     // Declarar o deltaa
 
     double* deltaa = (double*)malloc(sizeof(double) * n);
-
-    //double* delta2 = (double*)malloc(sizeof(double) * n);
-
 
     int iter_count = 0;
     int hess_count = 0;
@@ -358,14 +311,3 @@ int main(int argc,char* argv[])
 
     return 0;
 }
-
-/*
-String para função rosenbrock ? ja nao eh o que a rosenbrock faz?
-Vetor de x para calcular segunda derivada de cada xi gerando matriz de derivada 2x2 ? isso nao tinha entendido e acho q nao fizemos
-Vetor de ponteiros para apontar para cada x ? acho que ja tem algo assim
-Matriz Hessiana ?ja nao tem?
-Vetor para cada X1 até xn ?? vetor pra que x?
-Matriz de coeficiente avaliando cada função da matriz no ponto (x1,..., xn) da iteração atual
-Matriz de dados ? o que seria a matriz de dados?
-Cada xi começa valendo 1 / aqui da pra fazer iniciar com 1 
-*/
